@@ -165,53 +165,62 @@
     <h1>OUD Gaming</h1>
   </header>
   <nav>
+    <a onclick="showTab('start')">Strona główna</a>
     <a onclick="showTab('druzyna')">Drużyna</a>
     <a onclick="showTab('turnieje')">Turnieje</a>
-    <a onclick="showTab('osiagniecia')">Osiągnięcia</a>
     <a onclick="showTab('kontakt')">Kontakt</a>
     <a onclick="showTab('zgloszenia')">Zgłoszenia</a>
   </nav>
+  
+  <div id="start" class="tab active">
+    <h2>Witamy w OUD Gaming</h2>
+	<p>OUD Gaming to amatorska drużyna e-sportowa, która stawia na rozwój swoich graczy oraz pasję do gier komputerowych.</p>
+	<p> Jako zespół specjalizujemy się w League of Legends, a naszą misją jest nie tylko rywalizacja na najwyższym poziomie, ale również kształtowanie umiejętności i kariery naszych zawodników.</p> 
+	<p>Jeśli jesteś gotów na wyzwania, chcesz wspiąć się na wyższy poziom i mieć realny wpływ na rozwój drużyny – OUD Gaming to miejsce, które Cię potrzebuje!</p>
+	<p>OUD Gaming to drużyna, która posiada profesjonalnego trenera, który pomógł już wielu graczom osiągnąć szczyty w League of Legends. Nasz trener to doświadczony gracz z rangą Grand Master (EUNE) i Master (EUW), który posiada wiedzę oraz umiejętności niezbędne do tego, by pomóc Ci stać się lepszym graczem.</p>
+  </div>
 
-  <div id="druzyna" class="tab active">
+
+  <div id="druzyna" class="tab">
     <h2>Skład Drużyny</h2>
     <div class="player" onclick="showPlayer('Top')">
-      <img src="" alt=""> 
+      <img src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/images/position-selector/positions/icon-position-top.png" alt="Top"> 
       <div class="player-info">
         <div class="player-role">Top</div>
-        <div class="player-nick">Nick</div>
-        <p>Opis gracza na pozycji Top.</p>
+        <div class="player-nick">Soon</div>
+        <p>Tutaj znajdzie się gracz który wygra kwalifikacje!</p>
       </div>
     </div>
     <div class="player" onclick="showPlayer('Jungle')">
-      <img src="" alt="">
+      <img src="https://i.redd.it/kf7v6etxdqs51.png" alt="Jungle">
       <div class="player-info">
         <div class="player-role">Jungle</div>
-        <div class="player-nick">Nick</div>
-        <p>Opis gracza na pozycji Jungle.</p>
+        <div class="player-nick">Soon</div>
+        <p>Tutaj znajdzie się gracz który wygra kwalifikacje!</p>
       </div>
     </div>
     <div class="player" onclick="showPlayer('Mid')">
-      <img src="" alt="">
+      <img src="https://cdn3.emoji.gg/emojis/6934-lol-role-mid.png" alt="Mid">
       <div class="player-info">
         <div class="player-role">Mid</div>
-        <div class="player-nick">Nick</div>
-        <p>Opis gracza na pozycji Mid.</p>
+        <div class="player-nick">Soon</div>
+        <p>Tutaj znajdzie się gracz który wygra kwalifikacje!</p>
       </div>
     </div>
     <div class="player" onclick="showPlayer('ADC')">
-      <img src="" alt="">
+      <img src="https://static.wikia.nocookie.net/leagueoflegends/images/7/7f/Marksman_icon.png/revision/latest?cb=20181117143555" alt="ADC">
       <div class="player-info">
         <div class="player-role">ADC</div>
-        <div class="player-nick">Nick</div>
-        <p>Opis gracza na pozycji ADC.</p>
+        <div class="player-nick">Soon</div>
+        <p>Tutaj znajdzie się gracz który wygra kwalifikacje!</p>
       </div>
     </div>
     <div class="player" onclick="showPlayer('Support')">
-      <img src="" alt="">
+      <img src="https://i.namu.wiki/i/wkBv6sjhYwd14wdE8UX-tL9DWMrvtKuRlqSOZlEoEm3KU8-pShy2BMQvUxPSqLnItXEVfpXCkKV-M77hwwpXxQ.svg" alt="Support">
       <div class="player-info">
         <div class="player-role">Support</div>
-        <div class="player-nick">Nick</div>
-        <p>Opis gracza na pozycji Support.</p>
+        <div class="player-nick">Soon</div>
+        <p>Tutaj znajdzie się gracz który wygra kwalifikacje!</p>
       </div>
     </div>
   </div>
@@ -252,11 +261,6 @@
         <td>-</td>
       </tr>
     </table>
-  </div>
-
-  <div id="osiagniecia" class="tab">
-    <h2>Osiągnięcia</h2>
-    <p>Już wkrótce!</p>
   </div>
 
   <div id="kontakt" class="tab">
@@ -304,7 +308,7 @@
   <div id="profil" class="tab">
     <h2>Profil Gracza</h2>
     <div class="player">
-      <img id="profil-zdjecie" src="" alt="">
+      <img id="profil-zdjecie" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXdJ81v4vrVbpIiEoIul6u7zQPugdgtxUMnQ&s" alt="Zawodnik">
       <div class="player-info">
         <div class="player-role" id="profil-rola">Pozycja: <strong>---</strong></div>
         <div class="player-nick" id="profil-nick">Nick: <strong>---</strong></div>
@@ -336,10 +340,10 @@
     }
 
     function showPlayer(role) {
-      const nick = 'Nick';
+      const nick = 'Soon';
       const opis = `Opis gracza na pozycji ${role}`;
 
-      document.getElementById('profil-zdjecie').src = '';
+      document.getElementById('profil-zdjecie').src = 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5c07dc78-f044-4569-ac78-d9d043835697/d7iv8ky-5f7899a8-ab38-43b0-a02d-c0c71435177b.png/v1/fill/w_1024,h_903/poro__braum_by_dukeofdunkshire_d7iv8ky-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9OTAzIiwicGF0aCI6IlwvZlwvNWMwN2RjNzgtZjA0NC00NTY5LWFjNzgtZDlkMDQzODM1Njk3XC9kN2l2OGt5LTVmNzg5OWE4LWFiMzgtNDNiMC1hMDJkLWMwYzcxNDM1MTc3Yi5wbmciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.RUeq7yeqh6P0CBN8sreMFRWz8RoFB4OORxCwE3q3K1o';
       document.getElementById('profil-rola').innerHTML = `Pozycja: <strong>${role}</strong>`;
       document.getElementById('profil-nick').innerHTML = `Nick: <strong>${nick}</strong>`;
       document.getElementById('profil-opis').textContent = opis;
