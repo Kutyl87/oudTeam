@@ -1,0 +1,112 @@
+	<!DOCTYPE html>
+	<html lang="pl">
+	<head>
+	  <meta charset="UTF-8" />  
+	  <title>OUD Gaming</title>
+	  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+	  <link rel="stylesheet" type="text/css" href="../style.css">
+	</head>
+	<body>
+	  <header>
+		<a href="../index.html"><h1>OUD Gaming  <img src="https://pngimg.com/d/france_PNG4.png"></h1></a>
+	  </header>
+	  <nav>
+		<a href="../index.html">Strona Główna</a>
+		<a href="druzyna.html">Drużyna</a>
+		<a href="turnieje.html">Turnieje</a>
+		<a href="kontakt.html">Kontakt</a>
+		Zgłoszenia
+	  </nav>
+	  <div id="zgloszenia" class="tab active">
+		<h2>Formularz zgłoszeniowy</h2>
+		<div id="form">
+		  <label for="imie">Imię:</label>
+		  <input type="text" id="imie" name="imie" required>
+
+		  <label for="nick">Nick:</label>
+		  <input type="text" id="nick" name="nick" placeholder="Nie zapomij o #" required>
+
+		  <label for="position">Pozycja:</label>
+		  <select id="position" name="position" required>
+			<option value="TOP">TOP</option>
+			<option value="Jungle">Jungle</option>
+			<option value="Mid">Mid</option>
+			<option value="ADC">ADC</option>
+			<option value="Support">Support</option>
+		  </select>
+
+		  <label for="serwer">Serwer:</label>
+		  <select id="serwer" name="serwer" required>
+			<option value="EUNE">EUNE</option>
+			<option value="EUW">EUW</option>
+		  </select>
+
+		  <label for="range">Ranga:</label>
+		  <select id="range" name="range" required>
+			<option value="Iron">Iron</option>
+			<option value="Bronze">Bronze</option>
+			<option value="Silver">Silver</option>
+			<option value="Gold">Gold</option>
+			<option value="Platyna">Platyna</option>
+			<option value="Emerald">Emerald</option>
+			<option value="Diamond">Diament</option>
+			<option value="Master">Master</option>
+			<option value="GrandMaster">GrandMaster</option>
+			<option value="Challenger">Challenger</option>
+		  </select>
+
+		  <label for="discord">Discord:</label>
+		  <input type="text" id="discord" name="discord" required>
+
+		  <button type="submit">Wyślij</button>
+		</div>
+	  </div>
+
+	  <div id="profil" class="tab">
+		<h2>Profil Gracza</h2>
+		<div class="player">
+		  <img id="profil-zdjecie" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXdJ81v4vrVbpIiEoIul6u7zQPugdgtxUMnQ&s" alt="Zawodnik">
+		  <div class="player-info">
+			<div class="player-role" id="profil-rola">Pozycja: <strong>---</strong></div>
+			<div class="player-nick" id="profil-nick">Nick: <strong>---</strong></div>
+			<p id="profil-opis">Opis gracza...</p>
+		  </div>
+		</div>
+
+		<h3>Rozegrane mecze</h3>
+		<table>
+		  <tr>
+			<th>Data</th>
+			<th>Turniej</th>
+			<th>Przeciwnik</th>
+			<th>Wynik</th>
+		  </tr>
+		  <tr>
+			<td>-</td>
+			<td>-</td>
+			<td>-</td>
+			<td>-</td>
+		  </tr>
+		</table>
+	  </div>
+
+	  <script>
+		function showTab(tabId) {
+		  document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+		  document.getElementById(tabId).classList.add('active');
+		}
+
+		function showPlayer(role) {
+		  const nick = 'Soon';
+		  const opis = `Opis gracza na pozycji ${role}`;
+
+		  document.getElementById('profil-zdjecie').src = 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5c07dc78-f044-4569-ac78-d9d043835697/d7iv8ky-5f7899a8-ab38-43b0-a02d-c0c71435177b.png/v1/fill/w_1024,h_903/poro__braum_by_dukeofdunkshire_d7iv8ky-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9OTAzIiwicGF0aCI6IlwvZlwvNWMwN2RjNzgtZjA0NC00NTY5LWFjNzgtZDlkMDQzODM1Njk3XC9kN2l2OGt5LTVmNzg5OWE4LWFiMzgtNDNiMC1hMDJkLWMwYzcxNDM1MTc3Yi5wbmciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.RUeq7yeqh6P0CBN8sreMFRWz8RoFB4OORxCwE3q3K1o';
+		  document.getElementById('profil-rola').innerHTML = `Pozycja: <strong>${role}</strong>`;
+		  document.getElementById('profil-nick').innerHTML = `Nick: <strong>${nick}</strong>`;
+		  document.getElementById('profil-opis').textContent = opis;
+
+		  showTab('profil');
+		}
+	  </script>
+	</body>
+	</html>
