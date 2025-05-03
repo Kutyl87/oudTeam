@@ -5,6 +5,7 @@
 	  <title>OUD Gaming</title>
 	  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 	  <link rel="stylesheet" type="text/css" href="../style.css">
+	  <script src="../config.js"></script>
 	</head>
 	<body>
 	  <header>
@@ -59,54 +60,55 @@
 		  <input type="text" id="discord" name="discord" required>
 
 		  <button type="submit">Wyślij</button>
+		  
 		</div>
 	  </div>
+	  		<script>
+		  document.querySelector('button[type="submit"]').addEventListener('click', async function (event) {
+			event.preventDefault();
 
-	  <div id="profil" class="tab">
-		<h2>Profil Gracza</h2>
-		<div class="player">
-		  <img id="profil-zdjecie" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXdJ81v4vrVbpIiEoIul6u7zQPugdgtxUMnQ&s" alt="Zawodnik">
-		  <div class="player-info">
-			<div class="player-role" id="profil-rola">Pozycja: <strong>---</strong></div>
-			<div class="player-nick" id="profil-nick">Nick: <strong>---</strong></div>
-			<p id="profil-opis">Opis gracza...</p>
-		  </div>
-		</div>
+			const imie = document.getElementById('imie').value.trim();
+			const nick = document.getElementById('nick').value.trim();
+			const position = document.getElementById('position').value.trim().toLowerCase();
+			const server = document.getElementById('serwer').value.trim().toLowerCase();
+			const rank = document.getElementById('range').value.trim();
+			const discord = document.getElementById('discord').value.trim();
 
-		<h3>Rozegrane mecze</h3>
-		<table>
-		  <tr>
-			<th>Data</th>
-			<th>Turniej</th>
-			<th>Przeciwnik</th>
-			<th>Wynik</th>
-		  </tr>
-		  <tr>
-			<td>-</td>
-			<td>-</td>
-			<td>-</td>
-			<td>-</td>
-		  </tr>
-		</table>
-	  </div>
+			console.log(imie)
+			console.log(nick)
+			console.log(position)
+			console.log(server)
+			console.log(rank)
+			console.log(discord)
+			if (!imie || !nick || !position || !server || !rank || !discord) {
+			  alert('Uzupełnij wszystkie pola!');
+			  return;
+			}
 
-	  <script>
-		function showTab(tabId) {
-		  document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-		  document.getElementById(tabId).classList.add('active');
-		}
+			const data = {
+			  discord_id: discord,
+			  nickname: nick,
+			  position: position,
+			  server: server,
+			  rank: rank
+			};
 
-		function showPlayer(role) {
-		  const nick = 'Soon';
-		  const opis = `Opis gracza na pozycji ${role}`;
+			try {
+			  const response = await fetch(`${API_BASE_URL}/candidates/createCandidate`, {
+				method: 'POST',
+				headers: {
+				  'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(data)
+			  });
 
-		  document.getElementById('profil-zdjecie').src = 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5c07dc78-f044-4569-ac78-d9d043835697/d7iv8ky-5f7899a8-ab38-43b0-a02d-c0c71435177b.png/v1/fill/w_1024,h_903/poro__braum_by_dukeofdunkshire_d7iv8ky-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9OTAzIiwicGF0aCI6IlwvZlwvNWMwN2RjNzgtZjA0NC00NTY5LWFjNzgtZDlkMDQzODM1Njk3XC9kN2l2OGt5LTVmNzg5OWE4LWFiMzgtNDNiMC1hMDJkLWMwYzcxNDM1MTc3Yi5wbmciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.RUeq7yeqh6P0CBN8sreMFRWz8RoFB4OORxCwE3q3K1o';
-		  document.getElementById('profil-rola').innerHTML = `Pozycja: <strong>${role}</strong>`;
-		  document.getElementById('profil-nick').innerHTML = `Nick: <strong>${nick}</strong>`;
-		  document.getElementById('profil-opis').textContent = opis;
-
-		  showTab('profil');
-		}
-	  </script>
+			  const result = await response.json();
+			  alert(`Status: ${result.status || 'Nieznany'}\nWiadomość: ${result.message || 'Brak wiadomości'}`);
+			} catch (error) {
+			  console.error('Błąd podczas wysyłania:', error);
+			  alert('Wystąpił błąd przy wysyłaniu formularza.');
+			}
+		  });
+		</script>
 	</body>
 	</html>
