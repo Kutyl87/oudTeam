@@ -1,1 +1,1 @@
-const API_BASE_URL = "http://wmlynik.ovh:8765";
+const API_BASE_URL = "https://api.oudgaming.pl";
