@@ -4,6 +4,7 @@
 	  <meta charset="UTF-8" />  
 	  <title>OUD Gaming</title>
 	  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+	  <link rel="icon" href="../img/logo.png" type="image/x-icon">	  
 	  <link rel="stylesheet" type="text/css" href="../style.css">
 	  <script src="../config.js"></script>
 	</head>
@@ -22,10 +23,10 @@
 		<h2>Formularz zgłoszeniowy</h2>
 		<div id="form">
 		  <label for="imie">Imię:</label>
-		  <input type="text" id="imie" name="imie" required>
+		  <input type="text" id="imie" name="imie" maxlength="35" required>
 
 		  <label for="nick">Nick:</label>
-		  <input type="text" id="nick" name="nick" placeholder="Nie zapomij o #" required>
+		  <input type="text" id="nick" name="nick" maxlength="25" placeholder="Nie zapomij o #" required>
 
 		  <label for="position">Pozycja:</label>
 		  <select id="position" name="position" required>
@@ -57,51 +58,64 @@
 		  </select>
 
 		  <label for="discord">Discord:</label>
-		  <input type="text" id="discord" name="discord" required>
+		  <input type="text" id="discord" name="discord" maxlength="35" required>
 
 		  <button type="submit">Wyślij</button>
+		  <p id="form-message" style="margin-top:10px;"></p>
 		  
 		</div>
 	  </div>
-	  		<script>
-		  document.querySelector('button[type="submit"]').addEventListener('click', async function (event) {
-			event.preventDefault();
+	  	<script>
+			document.querySelector('button[type="submit"]').addEventListener('click', async function (event) {
+			  event.preventDefault();
 
-			const imie = document.getElementById('imie').value.trim();
-			const nick = document.getElementById('nick').value.trim();
-			const position = document.getElementById('position').value.trim().toLowerCase();
-			const server = document.getElementById('serwer').value.trim().toLowerCase();
-			const rank = document.getElementById('range').value.trim();
-			const discord = document.getElementById('discord').value.trim();
-			if (!imie || !nick || !position || !server || !rank || !discord) {
-			  alert('Uzupełnij wszystkie pola!');
-			  return;
-			}
+			  const imie = document.getElementById('imie').value.trim();
+			  const nick = document.getElementById('nick').value.trim();
+			  const position = document.getElementById('position').value.trim().toLowerCase();
+			  const server = document.getElementById('serwer').value.trim().toLowerCase();
+			  const rank = document.getElementById('range').value.trim();
+			  const discord = document.getElementById('discord').value.trim();
 
-			const data = {
-			  discord_id: discord,
-			  nickname: nick,
-			  position: position,
-			  server: server,
-			  rank: rank
-			};
+			  const messageEl = document.getElementById('form-message');
+			  messageEl.textContent = '';
 
-			try {
-			  const response = await fetch(`${API_BASE_URL}/candidates/createCandidate`, {
-				method: 'POST',
-				headers: {
-				  'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(data)
-			  });
+			  if (!imie || !nick || !position || !server || !rank || !discord) {
+				messageEl.textContent = 'Uzupełnij wszystkie pola!';
+				messageEl.style.color = 'red';
+				return;
+			  }
 
-			  const result = await response.json();
-			  alert(`Status: ${result.status || 'Nieznany'}\nWiadomość: ${result.message || 'Brak wiadomości'}`);
-			} catch (error) {
-			  console.error('Błąd podczas wysyłania:', error);
-			  alert('Wystąpił błąd przy wysyłaniu formularza.');
-			}
-		  });
+			  const data = {
+				discord_id: discord,
+				nickname: nick,
+				position: position,
+				server: server,
+				rank: rank
+			  };
+
+			  try {
+				const response = await fetch(`${API_BASE_URL}/candidates/createCandidate`, {
+				  method: 'POST',
+				  headers: {
+					'Content-Type': 'application/json'
+				  },
+				  body: JSON.stringify(data)
+				});
+
+				if (!response.ok) {
+				  throw new Error('Błąd odpowiedzi serwera');
+				}
+
+				const result = await response.json();
+				messageEl.textContent = 'Wysłane!';
+				messageEl.style.color = 'green';
+			  } catch (error) {
+				console.error('Błąd podczas wysyłania:', error);
+				messageEl.textContent = 'Wystąpił błąd. Spróbuj ponownie później.';
+				messageEl.style.color = 'red';
+			  }
+			});
+
 		</script>
 	</body>
 	</html>

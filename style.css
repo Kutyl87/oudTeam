@@ -150,6 +150,7 @@
 		}
 		#form input, #form select {
 		  margin-bottom: 20px;
+		  box-sizing:  border-box
 		}
 		#start{
 		  background: rgba(22, 27, 34, 0.9);
@@ -223,7 +224,7 @@
 			top: 8px;
 			left: 3px;
 		}
-		header a{
+		a{
 		  text-decoration: none; 
 		  color: inherit;			
 		}
