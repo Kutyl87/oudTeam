@@ -102,11 +102,15 @@
 				  body: JSON.stringify(data)
 				});
 
+				const result = await response.json();
+
 				if (!response.ok) {
-				  throw new Error('Błąd odpowiedzi serwera');
+				  const errorMsg = result.detail || 'Wystąpił błąd. Spróbuj ponownie później.';
+				  messageEl.textContent = errorMsg;
+				  messageEl.style.color = 'red';
+				  return;
 				}
 
-				const result = await response.json();
 				messageEl.textContent = 'Wysłane!';
 				messageEl.style.color = 'green';
 			  } catch (error) {
